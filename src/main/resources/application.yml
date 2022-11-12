@@ -2,15 +2,9 @@
 server:
     port: 9000
 spring:
-    datasource:
-        url: jdbc:mysql://localhost/cards?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
-        password: 'root'
-        username: 'root'
-
-    jpa:
-        databasePlatform: org.hibernate.dialect.MySQL5InnoDBDialect
-
-        hibernate:
-
-            ddl-auto: update
-        show-sql: true
+    application:
+        name: cards
+    profiles:
+        active: prod
+    config:
+        import: optional:configserver:http://configserver:8070
