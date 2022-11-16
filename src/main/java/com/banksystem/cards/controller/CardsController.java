@@ -3,10 +3,7 @@ package com.banksystem.cards.controller;
 import com.banksystem.cards.model.Cards;
 import com.banksystem.cards.model.Customer;
 import com.banksystem.cards.repository.CardsRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +18,17 @@ public class CardsController {
         this.cardsRepository = cardsRepository;
     }
 
-    @GetMapping
-    public Optional<List<Cards>> findByCustomerId(@RequestBody Customer customer){
+    @GetMapping(value = "/card")
+    public Optional<List<Cards>> findCustomerById(@RequestBody Customer customer){
 
         return cardsRepository.findByCustomerId(customer.customerId());
+    }
+
+
+    @PostMapping("/myCards")
+    public Optional<List<Cards>>getCardDetails(@RequestBody Customer customer) {
+        return cardsRepository.findByCustomerId(customer.customerId());
+
+
     }
 }

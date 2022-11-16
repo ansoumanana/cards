@@ -10,9 +10,25 @@ spring:
         import: optional:configserver:http://configserver:8070
 
 management:
+    endpoint:
+      shutdown:
+        enabled: true
     auditevents:
         enabled: true
     endpoints:
         web:
             exposure:
                 include: '*'
+
+eureka :
+    instance:
+        app-name: cards
+        prefer-ip-address: true
+    client:
+        enabled: true
+        registerWithEureka: true
+        fetch-registry: true
+
+
+        serviceUrl:
+            defaultZone: http://eurekaserver:8090/eureka/
