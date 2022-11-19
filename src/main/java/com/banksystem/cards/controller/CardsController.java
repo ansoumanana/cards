@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "cards")
+//@RequestMapping(value = "cards")
 public class CardsController {
 
     private  final CardsRepository cardsRepository;
@@ -19,15 +19,15 @@ public class CardsController {
     }
 
     @GetMapping(value = "/card")
-    public Optional<List<Cards>> findCustomerById(@RequestBody Customer customer){
+    public Optional<List<Cards>> findCustomerById(@RequestHeader("banksystem-correlation-id") String correlationId,@RequestBody Customer customer){
 
         return cardsRepository.findByCustomerId(customer.customerId());
     }
 
 
     @PostMapping("/myCards")
-    public Optional<List<Cards>>getCardDetails(@RequestBody Customer customer) {
-        return cardsRepository.findByCustomerId(customer.customerId());
+    public Optional<List<Cards>>getCardDetails(@RequestHeader("banksystem-correlation-id") String correlationId,@RequestBody Customer customer) {
+        return cardsRepository.findByCustomerId( customer.customerId());
 
 
     }
