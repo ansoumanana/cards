@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-//@RequestMapping(value = "cards")
+@RequestMapping("/api/v1/cards")
 public class CardsController {
     private static final Logger logger = LoggerFactory.getLogger(CardsController.class);
     private  final CardsRepository cardsRepository;
